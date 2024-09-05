@@ -1,15 +1,9 @@
-import Link from "next/link"
-
-interface TeamMember {
-  id: number
-  name: string
-  role: string
-}
 
 interface Project {
-  id: string // Assuming MongoDB ObjectId is a string
+  id: string 
   name: string
-  team: TeamMember[]
+  project: string
+  team: string
 }
 
 interface ProjectListProps {
@@ -20,15 +14,11 @@ interface ProjectListProps {
 export default function ProjectList({ projects, handleDelete }: ProjectListProps) {
   return (
     <ul>
-      {projects.map((project) => (
-        <li key={project.id}>
-          <h2>{project.name}</h2>
-          <p>Team: {project.team.map((member) => member.name).join(", ")}</p>
-          <Link href={`/components/Project/editProject/${project.id}`}>
-            Edit
-          </Link>
+      {projects.map(project => (
+        <div key={project.id}>
+          <h2>{project.project}</h2>
           <button onClick={() => handleDelete(project.id)}>Delete</button>
-        </li>
+        </div>
       ))}
     </ul>
   )

@@ -1,16 +1,20 @@
-import { connectToDatabase } from '../../../config/database'
-import projectSchema from '../../models/project' 
+'use server'
 
-// Connect to the database
+import { connectToDatabase } from '../../../config/database'
+import Project from '../../models/project' 
+
+
 async function getDb() {
   await connectToDatabase()
 }
 
+
 export async function GET() {
-  await getDb()
   
   try {
-    const projects = await projectSchema.find({})
+    await getDb()
+    const projects = await Project.find({}) 
+    // console.log('Fetched Projects:', projects)
     return new Response(JSON.stringify(projects), {
       status: 200,
       headers: { "Content-Type": "application/json" },
@@ -23,13 +27,14 @@ export async function GET() {
   }
 }
 
+
 export async function POST(request) {
   await getDb()
   
   try {
-    const body = await request.json()
+    const body = await request.json() 
     const project = new Project(body)
-    const savedProject = await project.save()
+    const savedProject = await project.save() 
     return new Response(JSON.stringify(savedProject), {
       status: 201,
       headers: { "Content-Type": "application/json" },

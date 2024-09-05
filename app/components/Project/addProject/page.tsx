@@ -10,17 +10,28 @@ export default function AddProject() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const newProject = { name, team: [] }
+    const newProject = {
+      name,
+      project: name,  
+    }
 
-    await fetch("/api/projects", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newProject),
-    })
+    try {
+      const response = await fetch('/api/Projects', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newProject),
+      })
 
-    router.push("/components/Project")
+      if (response.ok) {
+        router.push('/components/Project/addProject')
+      } else {
+        console.error("Error adding project")
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error)
+    }
   }
 
   return (

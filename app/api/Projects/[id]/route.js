@@ -1,7 +1,7 @@
 import { connectToDatabase } from '../../../../config/database' 
 import Project from '../../../models/project' 
 
-// Connect to the database
+
 async function getDb() {
   await connectToDatabase()
 }
