@@ -1,5 +1,5 @@
-import { connectToDatabase } from '../../../../config/database' 
-import Project from '../../../models/project' 
+import { connectToDatabase } from '../../../../lib/database' 
+import Project from '../../../models/mongodb' 
 
 
 async function getDb() {

@@ -1,7 +1,5 @@
-'use server'
-
-import { connectToDatabase } from '../../../config/database'
-import Project from '../../models/project' 
+import { connectToDatabase } from '../../../lib/database'
+import ProjectModel from '../../models/project' 
 
 
 async function getDb() {
@@ -13,8 +11,7 @@ export async function GET() {
   
   try {
     await getDb()
-    const projects = await Project.find({}) 
-    // console.log('Fetched Projects:', projects)
+    const projects = await ProjectModel.find({}) 
     return new Response(JSON.stringify(projects), {
       status: 200,
       headers: { "Content-Type": "application/json" },
@@ -33,7 +30,7 @@ export async function POST(request) {
   
   try {
     const body = await request.json() 
-    const project = new Project(body)
+    const project = new ProjectModel(body)
     const savedProject = await project.save() 
     return new Response(JSON.stringify(savedProject), {
       status: 201,

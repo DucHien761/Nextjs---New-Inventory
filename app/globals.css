@@ -1,29 +1,78 @@
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
-	--foreground-rgb: 0, 0, 0;
-	--background-start-rgb: 214, 219, 220;
-	--background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 33, 37, 41;
+  --background-start-rgb: 238, 242, 255; 
+  --background-end-rgb: 255, 255, 255; 
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-		--foreground-rgb: 255, 255, 255;
-		--background-start-rgb: 0, 0, 0;
-		--background-end-rgb: 0, 0, 0;
-	}
+  :root {
+    --foreground-rgb: 240, 240, 240; 
+    --background-start-rgb: 33, 37, 41; 
+    --background-end-rgb: 48, 52, 58; 
+  }
 }
 
 body {
-	color: rgb(var(--foreground-rgb));
-	background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
-		rgb(var(--background-start-rgb));
+  font-family: 'Inter', sans-serif; 
+  color: rgb(var(--foreground-rgb));
+  /* background: linear-gradient(
+    to bottom, 
+    transparent, 
+    rgb(var(--background-end-rgb))
+  ) rgb(var(--background-start-rgb)); */
 }
 
-@layer utilities {
-	.text-balance {
-		text-wrap: balance;
-	}
+html, body {
+	height: 100%; 
+	margin: 0; 
+  }
+
+
+* {
+  transition: all 0.3s ease;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: rgb(var(--foreground-rgb));
+  letter-spacing: 0.05em;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: rgb(var(--foreground-rgb));
+}
+
+a {
+  color: rgb(231, 232, 235);
+  text-decoration: none;
+  font-weight: 600;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+	background-color: rgb(208, 208, 221);
+	color: rgb(255, 255, 255);
+	padding: 1rem 2rem;
+	text-align: center;
+	margin-top: auto; 
+  }
+  
+  footer p {
+	margin: 0;
+  }

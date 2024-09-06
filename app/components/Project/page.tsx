@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import ProjectList from "./ProjectList/ProjectList"
+// import { ProjectList } from "../Project/ProjectList/ProjectList"
 
 interface Project {
   id: string
@@ -25,6 +25,7 @@ export default function ProjectPage() {
     
         setProjects(data)
       } catch (error) {
+        console.error("Error fetching projects:", error)
       }
     }
     fetchProjects()
@@ -43,10 +44,27 @@ export default function ProjectPage() {
   }
 
   return (
-    <div>
-      <h1>Project List</h1>
-      <ProjectList projects={projects} handleDelete={handleDelete} />
-      <Link href="/components/Project/addProject">Add New Project</Link>
+    <div className=" mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-6">Project List</h1>
+      <ul className="list-none p-0 mb-6">
+        {projects.map((project) => (
+          <li key={project.id} className="flex justify-between items-center p-4 bg-gray-100 mb-4 rounded-md shadow-sm">
+            <span>{project.name}</span>
+            <button
+              className="bg-red-500 text-white px-4 py-2 rounded-md"
+              onClick={() => handleDelete(project.id)}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+      <Link
+        href="/components/Project/addProject"
+        className="bg-green-500 text-white px-6 py-2 rounded-md no-underline"
+      >
+        Add New Project
+      </Link>
     </div>
   )
 }
